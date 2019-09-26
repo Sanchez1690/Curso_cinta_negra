@@ -1,0 +1,33 @@
+type  Query  {
+    getAuthors:[Author]!
+}
+
+type Mutation  {
+    createNewAuthor(data:AuthorInput):Author!
+}
+
+type Author  {
+    _id:ID!
+    firstName:String!
+    lastName:String!
+    email:String!
+    birthday:String!
+    gender:GENDERS
+    profilePic:String!
+}
+
+input AuthorInput {
+    firstName:String!
+    lastName:String!
+    email:String!
+    password:String
+    birthday:String
+    gender:GENDERS
+    profilePic:String
+}
+
+enum GENDERS{
+    M
+    F
+    O
+}
