@@ -1,29 +1,77 @@
+scalar EmailAddress
+scalar URL
+
 type  Query  {
     getAuthors:[Author]!
+    getSingleAuthor(id:ID!):Author!
+    getPosts:[Post]!
+    getOnePost(id:ID!):Post!
 }
 
 type Mutation  {
     createNewAuthor(data:AuthorInput):Author!
+    updateOneAuthor(id:ID!,data:AuthorUpdateInput!):Author!
+    deleteOneAuthor(id:ID!):String!
+    createOnePost(data:PostInput!):Post!
+    updateOnePost(id:ID!,data:PostUpdateInput!):Post!
+    deleteOnePost(id:ID!):String!
 }
 
 type Author  {
     _id:ID!
     firstName:String!
     lastName:String!
-    email:String!
+    email:EmailAddress!
     birthday:String!
     gender:GENDERS
-    profilePic:String!
+    profilePic:URL!
+    posts:[Post]!
 }
 
 input AuthorInput {
     firstName:String!
     lastName:String!
-    email:String!
+    email:EmailAddress!
     password:String
     birthday:String
     gender:GENDERS
     profilePic:String
+}
+
+input AuthorUpdateInput{
+    firstName:String
+    lastName:String
+    email:EmailAddress
+    password:String
+    birthday:String
+    gender:GENDERS
+    profilePic:String
+    isActive:Boolean
+}
+
+type Post{
+    _id:ID!
+    title:String!
+    content:String!
+    author:Author
+    cover:URL
+    #likes:Int!
+    likedBy:[Author]
+}
+
+input PostInput{
+    title:String!
+    content:String!
+    author:String!
+    cover:URL
+}
+
+input PostUpdateInput{
+    title:String
+    content:String
+    cover:URL
+    likedBy:String
+    isActive:Boolean
 }
 
 enum GENDERS{

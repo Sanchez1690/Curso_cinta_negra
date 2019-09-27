@@ -1,16 +1,16 @@
-////require('dotenv').config();
-////const {GraphQLServer}= require('graphql-yoga');
-////const {importSchema} = require('graphql-import');
-////const resolvers = require('./src/resolvers');
-////const mongoose = require('mongoose');
+require('dotenv').config();
+const {GraphQLServer}= require('graphql-yoga');
+const {importSchema} = require('graphql-import');
+const resolvers = require('./src/resolvers');
+const mongoose = require('mongoose');
 
-////mongoose.connect(process.env.MONGO_URL,{useNewUrlParser:true,useCreateIndex:true,useUnifiedTopology: true});
+mongoose.connect(process.env.MONGO_URL,{useNewUrlParser:true,useCreateIndex:true,useUnifiedTopology: true});
 
-////const mongo = mongoose.connection;
+const mongo = mongoose.connection;
 
-////mongo.on('error',(error)=>console.log(error)).once ('open',()=>console.log('Connected on database'));
+mongo.on('error',(error)=>console.log(error)).once ('open',()=>console.log('Connected on database'));
 
-////const typeDefs = importSchema(__dirname+'/schema.graphql');
+const typeDefs = importSchema(__dirname+'/schema.graphql');
 
 /*
 const typeDefs= `
@@ -56,6 +56,6 @@ const resolvers={
     }
 };
 */
-////const server = new GraphQLServer({typeDefs, resolvers});
+const server = new GraphQLServer({typeDefs, resolvers});
 
-////server.start(()=> console.log('Works in port 4000 :)'));
+server.start(()=> console.log('Works in port 4000 :)'));
