@@ -15,6 +15,12 @@ type Mutation  {
     createOnePost(data:PostInput!):Post!
     updateOnePost(id:ID!,data:PostUpdateInput!):Post!
     deleteOnePost(id:ID!):String!
+    login(email:EmailAddress!,password:String!):Auth!
+}
+
+type Auth{
+    token:String!
+    message:String!
 }
 
 type Author  {
@@ -32,7 +38,7 @@ input AuthorInput {
     firstName:String!
     lastName:String!
     email:EmailAddress!
-    password:String
+    password:String!
     birthday:String
     gender:GENDERS
     profilePic:String
