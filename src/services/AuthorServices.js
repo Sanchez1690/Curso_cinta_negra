@@ -3,9 +3,15 @@ const { Authors } = require('../models');
 
 const createAuthor = (data) => Authors.create(data);
 
-const getAllAuthors = () => Authors.find({isActive:true}).populate('Posts');
+const getAllAuthors = () => Authors.find({isActive:true}).populate({
+    path:'posts',
+    model:'posts'
+});
 
-const getOneAuthor = (id) => Authors.findOne({_id:id,isActive:true}).populate('Posts');
+const getOneAuthor = (id) => Authors.findOne({_id:id,isActive:true}).populate({
+    path:'posts',
+    model:'posts'
+});
 
 const getAuthorByEmail =(email)=> Authors.findOne({email,isActive:true});
 

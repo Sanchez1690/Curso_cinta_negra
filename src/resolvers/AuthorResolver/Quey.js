@@ -11,7 +11,13 @@ const getSingleAuthor = async(_,params)=>{
     return author;
 };
 
+const me = async(root,params,{user})=>{
+    const author = await getOneAuthor(user._id);
+    return author;
+};
+
 module.exports = {
     getAuthors,
-    getSingleAuthor
+    getSingleAuthor,
+    me
 };

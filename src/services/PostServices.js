@@ -11,9 +11,9 @@ const getAllPosts = () => Posts.find({isActive:true}).populate('author');
 
 const getSinglePost = (id) => Posts.findOne({_id:id,isActive:true}).populate('author');
 
-const updatePost = (id,data) => Posts.findOneAndUpdate({_id:id,isActive:true},{...data},{new:true});
+const updatePost = (id,data,author) => Posts.findOneAndUpdate({_id:id,author,isActive:true},{...data},{new:true});
 
-const deletePost = (id)=> Posts.findByIdAndUpdate(id,{isActive:false});
+const deletePost = (id,author)=> Posts.findByIdAndUpdate({_id:id,author,isActive:true},{isActive:false});
 
 module.exports = {
     createPost,
